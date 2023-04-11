@@ -1,0 +1,5 @@
+{
+    "get":["get", "fetch", "ftch", "f", "g" ],
+    "update":["new", "n", "set", "s", "u","updt","update", "change", "chng", "c", "edit", "e"],
+    "delete":["delete", "del", "remove", "d", "r"]
+  }
