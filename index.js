@@ -1,8 +1,14 @@
 exports.newCache = function(){
+  if(cache === undefined) {
   global.cache = new Map();
+  } else {
+    throw new ReferenceError("cache has already been defined.", "index.js",3);
+  }
 }
 exports.manageCache = function(action, key, value) {
-  if (cache === undefined) {}
+  if (cache === undefined) {
+    throw new Error("Missing cache. (Import and run newCache once and anywhere.)", "index.js", 5);
+  }
   const data = require('./names.json');
   const getList = data.get;
   const updateList = data.update;
@@ -12,8 +18,7 @@ exports.manageCache = function(action, key, value) {
       if(cache.has(key)) {
           return cache.get(key);
       } else {
-        console.error("There is no key as" + key);
-        return;
+        throw new URIError("Invalid key.","index.js",12)
       }
     } else if (updateList.includes(action)) {
       cache.set(key, value);
@@ -22,7 +27,7 @@ exports.manageCache = function(action, key, value) {
       cache.delete(key);
       return;
     } else {
-      console.error("Use a proper input. Err(Wrong input). [Cache-Info] Try using " + `"new", "update", "edit", "remove", or (more to come).`);
-      return;
+      throw new TypeError("Improper input. Err(Wrong input). [Cache-Info] Try using " + `"new", "update", "edit", "remove", or (more to come)."`, "index.js", 10);
+      //return;
     }
 }

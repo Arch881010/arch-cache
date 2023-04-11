@@ -1,6 +1,6 @@
 {
   "name": "arch881010-cache",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Arch's cache system using maps.",
   "main": "index.js",
   "scripts": {
