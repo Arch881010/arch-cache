@@ -1,5 +1,5 @@
 exports.newCache = function(){
-  if(cache === undefined) {
+  if(typeof cache == 'undefined') {
   global.cache = new Map();
   } else {
     throw new ReferenceError("cache has already been defined.", "index.js",3);
