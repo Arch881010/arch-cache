@@ -5,12 +5,12 @@ Notice: I keep a global variable as "Cache" until I understand a few things, may
 
 If you require it as ```const Cache = require('arch881010-cache);```,  
 
-`cache.newCache();` - Creates a new cache.  
-`cache.add(key, value);` - Adds a key with a certain value.  
-`cache.update(key, value);` - Updates the existing key with a new value.  
-`cache.delete(key);` - Deletes the key and it's value.  
+`Cache.newCache();` - Creates a new cache.  
+`Cache.add(key, value);` - Adds a key with a certain value.  
+`Cache.update(key, value);` - Updates the existing key with a new value.  
+`Cache.delete(key);` - Deletes the key and it's value.  
 If you like a general function, then:  
-`cache.manage(action, key, value);`  
+`Cache.manage(action, key, value);`  
 List of actions is: "Add", "Delete", "Edit", "Update". (There is some shortened naming pre-emptively, please open a issue and let me know what acronym could be added.)
 
 Now, if you would like to require individual functions with good sounding names:
