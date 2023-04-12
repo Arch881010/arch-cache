@@ -1,6 +1,6 @@
 {
   "name": "arch881010-cache",
-  "version": "0.0.3b",
+  "version": "0.0.4",
   "description": "Arch's cache system using maps.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Arch881010/arch-cache/issues"
   },
-  "homepage": "https://github.com/Arch881010/arch-cache#readme"
+  "homepage": "https://github.com/Arch881010/arch-cache#readme",
+  "files":[
+    "index.js",
+    "names.json",
+    "LICENSE",
+    "README.md"
+  ]
 }
