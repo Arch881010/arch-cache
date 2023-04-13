@@ -12,15 +12,14 @@ Password is optional.
 `Cache.get(key);` - Gets the key's value.
 `Cache.clear(password)` - Clears the Cache. (Requires your password you already have.)
 In favor of maintaining, I have removed the below:
---------
+
 `Cache.manage(action, key, value);`  
 List of actions is: "Add", "Delete", "Edit", "Update", "Get". (There is some shortened naming pre-emptively, please open a issue and let me know what acronym could be added.)
 Note: Capitalization is not sensitive, and forced to lower.
--------
 Now, if you would like to require individual functions with good sounding names:
 
 ```js
-const { addCache, updateCache, deleteCache, manageCache, getCache, newCache } = require('arch881010-cache`); 
+const { addCache, updateCache, deleteCache, getCache, newCache } = require('arch881010-cache`); 
 ```
 
 W.I.P.
