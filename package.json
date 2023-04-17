@@ -1,6 +1,6 @@
 {
   "name": "arch881010-cache",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Arch's cache system fs.",
   "main": "index.js",
   "scripts": {
