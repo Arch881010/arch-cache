@@ -1,16 +1,16 @@
 /*
-JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"));
-fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(data));
+JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
+fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(data));
 */
 exports.new = function(password) {
   var fs = require('node:fs');
-  var cache = fs.readFileSync("./storageFiles/cache.json","UTF-8");
+  var cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8");
   password = password ?? "";
   obj = {
     "password":password
   }
   if (cache == '{}' || cache == "") {
-    fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(obj));
+    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(obj));
   } else {
   }
 }
@@ -18,13 +18,13 @@ exports.new = function(password) {
 
 exports.newCache = function(password) {
   var fs = require('node:fs');
-  var cache = fs.readFileSync("./storageFiles/cache.json","UTF-8");
+  var cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8");
   password = password ?? "";
   obj = {
     "password":password
   }
   if (cache == '{}' || cache == "") {
-    fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(obj));
+    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(obj));
   } else {
   }
 }
@@ -33,8 +33,8 @@ exports.newCache = function(password) {
 //Creates/adds a new item.
 exports.addCache = function(key, value) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"));
-  key = key ?? null;
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
+  key = key ?? null;a
   value = value ?? null;
   if (key === null && value === null) {
     throw new ReferenceError("You did not supply a key or a value.");
@@ -44,7 +44,7 @@ exports.addCache = function(key, value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     data[`${key}`] = value;
-    fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(data));
   }
 };
 
@@ -52,7 +52,7 @@ exports.addCache = function(key, value) {
 
 exports.add = function(key, value) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if (key === null && value === null) {
@@ -63,7 +63,7 @@ exports.add = function(key, value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     data[`${key}`] = value;
-    fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(data));
   }
 };
 
@@ -71,7 +71,7 @@ exports.add = function(key, value) {
 //Updates a value for an key.
 exports.updateCache = function(key, value) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if (key === null && value === null) {
@@ -82,12 +82,12 @@ exports.updateCache = function(key, value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     data[`${key}`] = value;
-    fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(data));
   }
 };
 exports.update = function(key, value) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if (key === null && value === null) {
@@ -98,7 +98,7 @@ exports.update = function(key, value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     data[`${key}`] = value;
-    fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(data));
   }
 }
 
@@ -106,66 +106,66 @@ exports.update = function(key, value) {
 //Deletes a cached item.
 exports.deleteCache = function(key) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"))
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"))
   key = key ?? null;
   if (key === null || typeof data[`${key}`] == 'undefined' ) {
     throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
   } else {
     delete data[`${key}`];
-    fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(data));
   }
 };
 exports.delete = function(key) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"))
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"))
   key = key ?? null;
   if (key === null || typeof data[`${key}`] == 'undefined' ) {
     throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
   } else {
     delete data[`${key}`];
-    fs.writeFileSync("./storageFiles/cache.json",JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(data));
   }
 };
 
 
 exports.getCache = function(key) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"));
-  if(typeof data.key == 'undefined' ) {
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
+  if(typeof data[key] == 'undefined' ) {
     throw new ReferenceError(`There is no key as ${key} in the Cache.`);
   } else {
-    return data.key;
+    return data[key];
   }
 };
 
 exports.get = function(key) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8"));
-  if(typeof data.key == 'undefined' ) {
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
+  if(typeof data[`${key}`] == 'undefined' ) {
     throw new ReferenceError(`There is no key as ${key} in the Cache.`);
   } else {
-    return data.key;
+    return data[`${key}`];
   }
 };
 
 exports.clear = function(password){
   password = password ?? "";
   var fs = require('node:fs');
-  var cachePassword = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8")).password ?? "";
+  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8")).password ?? "";
   if (password != cachePassword) {
     console.log("Improper password.");
     return;
   };
-  fs.writeFileSync("./storageFiles/cache.json", "{}");
+  fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "{}");
 }
 
 exports.clearCache = function(password){
   password = password ?? "";
   var fs = require('node:fs');
-  var cachePassword = JSON.parse(fs.readFileSync("./storageFiles/cache.json","UTF-8")).password ?? "";
+  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8")).password ?? "";
   if (password != cachePassword) {
     console.log("Improper password.");
     return;
   };
-  fs.writeFileSync("./storageFiles/cache.json", "{}");
+  fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "{}");
 }
