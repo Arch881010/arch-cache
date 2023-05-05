@@ -33,8 +33,7 @@ Note: case is not sensitive, and forced to lower.
 Now, if you would like to require individual functions:
 
 ```js
-const { addcache, updatecache, deleteFromcache, getFromcache, newcache } = require('arch881010-cache');
-const { newCache, addCache, updateCache, getFromCache, getFullCacheContent, deleteFromCache, clearCache }
+const { newCache, addCache, updateCache, getFromCache, getFullCacheContent, deleteFromCache, clearCache } = require('arch881010-cache');
 ```
 
 W.I.P.
