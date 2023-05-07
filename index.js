@@ -56,7 +56,10 @@ exports.about = function(detailed) {
  * @returns It is always successful, thus, it returns nothing.
 */
 exports.new = function(password) {
+  password = password ?? "";
+  try {
   password = password.trim();
+  } catch (err) {}
   var fs = require('node:fs');
   var cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8");
   password = password ?? "";
@@ -83,7 +86,10 @@ exports.new = function(password) {
  * @returns Always successful (if installed correctly), which results in nothing. 
 */
 exports.newCache = function(password) {
+  password = password ?? "";
+  try {
   password = password.trim();
+  } catch (err) {}
   var fs = require('node:fs');
   var cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8");
   password = password ?? "";
@@ -110,12 +116,20 @@ exports.newCache = function(password) {
  * @since 1.0.0
 */
 exports.addCache = function(key, value) {
-  key = key.trim();
-  value = value.trim();
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
+  if(key) {
+    try {
+    key = key.trim();
+    } catch (err) {}
+  }
+  if(value) {
+    try {
+    value = value.trim();
+    } catch (err) {}
+  }
   if (key === null && value === null) {
     throw new ReferenceError("You did not supply a key or a value.");
   } else if (key === key && value == null) {
@@ -146,17 +160,23 @@ exports.addCache = function(key, value) {
  * @since 1.0.0
 */
 exports.add = function(key, value) {
+  key = key ?? "";
+  value = value ?? "";
+  try {
   key = key.trim();
+  } catch (err) {}
+  try {
   value = value.trim();
+  } catch (err) {}
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
-  if (key === null && value === null) {
+  if (!key && !value) {
     throw new ReferenceError("You did not supply a key or a value.");
-  } else if (key === key && value == null) {
+  } else if (key === key && !value) {
     throw new ReferenceError("You did not supply a value to set it to. Key provided: " + key);
-  } else if (key === null && value == value) {
+  } else if (!value && value == value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     try {
@@ -183,17 +203,23 @@ exports.add = function(key, value) {
 */
 //Updates a value for an key.
 exports.updateCache = function(key, value) {
+  key = key ?? "";
+  value = value ?? "";
+  try {
   key = key.trim();
+  } catch (err) {}
+  try {
   value = value.trim();
+  } catch (err) {}
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
-  if (key === null && value === null) {
+  if (!key && !value) {
     throw new ReferenceError("You did not supply a key or a value.");
-  } else if (key === key && value == null) {
+  } else if (key === key && !value) {
     throw new ReferenceError("You did not supply a value to set it to. Key provided: " + key);
-  } else if (key === null && value == value) {
+  } else if (!key && value == value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     try {
@@ -220,12 +246,20 @@ exports.updateCache = function(key, value) {
 */
 
 exports.update = function(key, value) {
-  key = key.trim();
-  value = value.trim();
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
+  if(key) {
+    try {
+    key = key.trim();
+    } catch (err){}
+  }
+  if(value) {
+    try {
+    value = value.trim();
+    } catch (err) {}
+  }
   if (key === null && value === null) {
     throw new ReferenceError("You did not supply a key or a value.");
   } else if (key === key && value == null) {
@@ -259,11 +293,13 @@ exports.update = function(key, value) {
  * @since 1.0.0
 */
 exports.deleteFromCache = function(key) {
+  key = key ?? "";
+  try {
   key = key.trim();
+  } catch (err) {}
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"))
-  key = key ?? null;
-  if (key === null || typeof data[`${key}`] == 'undefined') {
+  if (!key || typeof data[`${key}`] == 'undefined') {
     throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
   } else {
     delete data[`${key}`];
@@ -283,11 +319,13 @@ exports.deleteFromCache = function(key) {
  * @since 1.0.0
 */
 exports.delete = function(key) {
+  key = key ?? "";
+  try {
   key = key.trim();
+  } catch (err){}
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"))
-  key = key ?? null;
-  if (key === null || typeof data[`${key}`] == 'undefined') {
+  if (!key || typeof data[`${key}`] == 'undefined') {
     throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
   } else {
     delete data[`${key}`];
@@ -311,7 +349,10 @@ exports.delete = function(key) {
  * @since 1.0.0
 */
 exports.getFromCache = function(key) {
+  key = key ?? "";
+  try {
   key = key.trim();
+  } catch (err) {}
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
   if (typeof data[key] == 'undefined') {
@@ -336,7 +377,10 @@ exports.getFromCache = function(key) {
  * @since 1.0.0
 */
 exports.get = function(key) {
+  key = key ?? "";
+  try {
   key = key.trim();
+  } catch (err) {}
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
   if (typeof data[`${key}`] == 'undefined') {
@@ -363,7 +407,9 @@ exports.get = function(key) {
 */
 exports.clear = function(password) {
   password = password ?? "";
+  try {
   password = password.trim();
+  } catch(err){}
   var fs = require('node:fs');
   var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8")).password ?? "";
   if (password != cachePassword) {
@@ -389,7 +435,9 @@ exports.clear = function(password) {
 */
 exports.clearCache = function(password) {
   password = password ?? "";
+  try {
   password = password.trim();
+  } catch(err){}
   var fs = require('node:fs');
   var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8")).password ?? "";
   if (password != cachePassword) {
