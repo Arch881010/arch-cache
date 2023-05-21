@@ -4,7 +4,7 @@
  * @author Arch
  */
 /**
- * @param {string | boolean | number} [detailed = ""] - To get full details or not. >1 | 0, true | false, "yes" | "", "yes" | "no". Not case strict.
+ * @param {string | boolean | number} [detailed = ""] - To get full details or not. >1 | 0, true | false, "yes" | "", "yes" | "no". Not case sensitive.
  * @returns {console.log} Logs the details into the console, so it doesn't return anything.
  * @example Example 1
  * const {about} = require('arch881010-cache');
@@ -18,7 +18,9 @@
 exports.about = function(detailed) {
   var fs = require('node:fs');
   detailed = detailed ?? "";
+  try {
   detailed = detailed.trim();
+  } catch(err){}
   var type = String(typeof detailed);
   var typesend;
   if (type == "string") {
