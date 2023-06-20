@@ -1,15 +1,12 @@
 # Hi
 
-1.0.2:
-Param Update
-getCache -> getFromCache
-deleteCache -> deleteFromCache
+1.0.4:
+Cache size (B (Bytes))
+Readme.md update.
+Warning of depreceiation for individual functions (addCache, etc (this is still fine with {get}, {add})). It was a hassal to maintain.
+Docs are now included. It will be hosted on github. (Link will be added eventually)
 
-Formatting.
-
-New function: getFullCacheContent(type)
-Returns the cache as a string or object.
-(Type: "str", "obj", etc. Not caps sensitive.)
+Hey, when updating arch881010-cache, your cache gets **wiped.** This can be saved by simply removing index.js and finding the source on github with the new index.js. (This occurs with older versions. This shouldn't happen in 1.0.4 or greater.)
 
 Type saftey.
 Keys, values, passwords, any string being entered, is automatically trimmed.
@@ -24,16 +21,13 @@ Password is a string and is optional.
 `cache.update(key, value);` - Updates the existing key with a new value.  
 `cache.delete(key);` - Deletes the key and it's value.  
 `cache.get(key);` - Gets the key's value.  
-`cache.clear(password)` - Clears the cache. (Requires your password you already have.)  
+`cache.clear(password)` - Clears the cache. (Requires your password you already have, or leave blank if you didn't use the password.)  
 `cache.about(t/f)` - Gets the details of the cache. (t/f = true/false)  
-`cache.getFullCacheContent(type)` - Gets the entire cache. (type: "str","obj". Defaults to "str"(string).)  
+`cache.content(type)` - Gets the entire cache. (type: "str","obj". Defaults to "str"(string).)  
+`cache.size()` - Gets the cache's size in bytes.
 
 `
 Note: case is not sensitive, and forced to lower.
-Now, if you would like to require individual functions:
-
-```js
-const { newCache, addCache, updateCache, getFromCache, getFullCacheContent, deleteFromCache, clearCache } = require('arch881010-cache');
-```
+`
 
 W.I.P.

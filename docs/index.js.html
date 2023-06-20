@@ -1,4 +1,32 @@
-//Global notice:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//Global notice:
 /**
  * @version 1.0.4
  * @author Arch
@@ -148,11 +176,11 @@ exports.addCache = function(key, value) {
     value = value.trim();
     } catch (err) {}
   }
-  if (key === null && value === null) {
+  if (key === null &amp;&amp; value === null) {
     throw new ReferenceError("You did not supply a key or a value.");
-  } else if (key === key && value == null) {
+  } else if (key === key &amp;&amp; value == null) {
     throw new ReferenceError("You did not supply a value to set it to. Key provided: " + key);
-  } else if (key === null && value == value) {
+  } else if (key === null &amp;&amp; value == value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     try {
@@ -190,11 +218,11 @@ exports.add = function(key, value) {
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
-  if (!key && !value) {
+  if (!key &amp;&amp; !value) {
     throw new ReferenceError("You did not supply a key or a value.");
-  } else if (key === key && !value) {
+  } else if (key === key &amp;&amp; !value) {
     throw new ReferenceError("You did not supply a value to set it to. Key provided: " + key);
-  } else if (!value && value == value) {
+  } else if (!value &amp;&amp; value == value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     try {
@@ -235,11 +263,11 @@ exports.updateCache = function(key, value) {
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
-  if (!key && !value) {
+  if (!key &amp;&amp; !value) {
     throw new ReferenceError("You did not supply a key or a value.");
-  } else if (key === key && !value) {
+  } else if (key === key &amp;&amp; !value) {
     throw new ReferenceError("You did not supply a value to set it to. Key provided: " + key);
-  } else if (!key && value == value) {
+  } else if (!key &amp;&amp; value == value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     try {
@@ -280,11 +308,11 @@ exports.update = function(key, value) {
     value = value.trim();
     } catch (err) {}
   }
-  if (key === null && value === null) {
+  if (key === null &amp;&amp; value === null) {
     throw new ReferenceError("You did not supply a key or a value.");
-  } else if (key === key && value == null) {
+  } else if (key === key &amp;&amp; value == null) {
     throw new ReferenceError("You did not supply a value to set it to. Key provided: " + key);
-  } else if (key === null && value == value) {
+  } else if (key === null &amp;&amp; value == value) {
     throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
   } else {
     try {
@@ -572,4 +600,26 @@ exports.deleteMatching = function(match) {
   }
   fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(cache));
   console.log(`You deleted ${String(amount)} of keys.`)
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#about">about</a></li><li><a href="global.html#add">add</a></li><li><a href="global.html#addCache">addCache</a></li><li><a href="global.html#clear">clear</a></li><li><a href="global.html#clearCache">clearCache</a></li><li><a href="global.html#content">content</a></li><li><a href="global.html#delete">delete</a></li><li><a href="global.html#deleteFromCache">deleteFromCache</a></li><li><a href="global.html#deleteMatching">deleteMatching</a></li><li><a href="global.html#get">get</a></li><li><a href="global.html#getFromCache">getFromCache</a></li><li><a href="global.html#getFullCacheContent">getFullCacheContent</a></li><li><a href="global.html#new">new</a></li><li><a href="global.html#newCache">newCache</a></li><li><a href="global.html#size">size</a></li><li><a href="global.html#update">update</a></li><li><a href="global.html#updateCache">updateCache</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Jun 19 2023 19:32:13 GMT-0500 (Central Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
