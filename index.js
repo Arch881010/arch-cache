@@ -67,7 +67,7 @@ exports.new = function(password) {
   try {
     cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8");
   } catch(err) {
-    fs.writeFile("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse("{}"))
+    fs.writeFile("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse("{}"), function() {})
     cache = "{}"
   }
   password = password ?? "";
@@ -105,7 +105,7 @@ exports.newCache = function(password) {
   try {
     cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8");
   } catch(err) {
-    fs.writeFile("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse("{}"))
+    fs.writeFile("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse("{}"), function() {})
     cache = "{}"
   }
   password = password ?? "";
