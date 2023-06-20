@@ -1,6 +1,6 @@
 {
   "name": "arch881010-cache",
-  "version": "1.0.4a",
+  "version": "1.0.4b",
   "description": "Arch's cache that uses node:fs.",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,8 @@
   "files": [
     "index.js",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "stroageFiles/cache.json"
   ],
   "devDependencies": {
     "jsdoc": "^4.0.2"
