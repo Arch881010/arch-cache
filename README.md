@@ -1,12 +1,9 @@
 # Hi
 
-1.0.4:
-Cache size (B (Bytes))
-Readme.md update.
-Warning of depreceiation for individual functions (addCache, etc (this is still fine with {get}, {add})). It was a hassal to maintain.
-Docs are now included. It will be hosted on github. (Link will be added eventually)
+1.0.4.1:
+Fix err
 
-Hey, when updating arch881010-cache, your cache gets **wiped.** This can be saved by simply removing index.js and finding the source on github with the new index.js. (This occurs with older versions. This shouldn't happen in 1.0.4 or greater.)
+Hey, when updating arch881010-cache, your cache gets **wiped.**
 
 Type saftey.
 Keys, values, passwords, any string being entered, is automatically trimmed.
