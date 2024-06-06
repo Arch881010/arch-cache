@@ -1,6 +1,6 @@
 //Global notice:
 /**
- * @version 1.0.4
+ * @version 1.0.5
  * @author Arch
  */
 /**
@@ -65,18 +65,19 @@ exports.new = function(password) {
   var fs = require('node:fs');
   var cache;
   try {
-    cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8");
+    cache = fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8");
   } catch(err) {
-    fs.writeFile("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse("{}"), function() {})
     cache = "{}"
   }
   password = password ?? "";
   obj = {
-    "password": password
+    "cache_lock_password_NOOVERWRITE": password
   }
   if (cache == '{}' || cache == "") {
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(obj));
+    var {outputFileSync} = require('fs-extra');
+    outputFileSync("./node_modules/arch881010-files/cache.json", JSON.stringify(obj, null, 2));
   } else {
+    console.log("Cache already exists. If you want to clear it, use clear([password]). [password] is optional. (Read the documentation for more information.)");
   }
 }
 
@@ -95,27 +96,7 @@ exports.new = function(password) {
  * @returns Always successful (if installed correctly), which results in nothing. 
 */
 exports.newCache = function(password) {
-  console.log("newCache() will be depreceated soon.")
-  password = password ?? "";
-  try {
-  password = password.trim();
-  } catch (err) {}
-  var fs = require('node:fs');
-  var cache;
-  try {
-    cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8");
-  } catch(err) {
-    fs.writeFile("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse("{}"), function() {})
-    cache = "{}"
-  }
-  password = password ?? "";
-  obj = {
-    "password": password
-  }
-  if (cache == '{}' || cache == "") {
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(obj));
-  } else {
-  }
+  throw new ReferenceError("newCache() is deprecated, use new()");
 }
 //Creates/adds a new item.
 /**
@@ -133,35 +114,7 @@ exports.newCache = function(password) {
  * @since 1.0.0
 */
 exports.addCache = function(key, value) {
-  console.log("addCache() will be depreceated soon.")
-  var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
-  key = key ?? null;
-  value = value ?? null;
-  if(key) {
-    try {
-    key = key.trim();
-    } catch (err) {}
-  }
-  if(value) {
-    try {
-    value = value.trim();
-    } catch (err) {}
-  }
-  if (key === null && value === null) {
-    throw new ReferenceError("You did not supply a key or a value.");
-  } else if (key === key && value == null) {
-    throw new ReferenceError("You did not supply a value to set it to. Key provided: " + key);
-  } else if (key === null && value == value) {
-    throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
-  } else {
-    try {
-      data[`${key}`] = JSON.parse(value);
-    } catch (e) {
-      data[`${key}`] = value;
-    }
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse(data));
-  }
+  throw new ReferenceError('addCache() is depreceated, use add() instead.');
 };
 
 /**
@@ -187,7 +140,7 @@ exports.add = function(key, value) {
   value = value.trim();
   } catch (err) {}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if (!key && !value) {
@@ -202,7 +155,7 @@ exports.add = function(key, value) {
     } catch (e) {
       data[`${key}`] = value;
     }
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-files/cache.json", JSON.stringify(data));
   }
 };
 
@@ -222,33 +175,7 @@ exports.add = function(key, value) {
 */
 //Updates a value for an key.
 exports.updateCache = function(key, value) {
-  console.log("updateCache() will be depreceated soon.")
-  key = key ?? "";
-  value = value ?? "";
-  try {
-  key = key.trim();
-  } catch (err) {}
-  try {
-  value = value.trim();
-  } catch (err) {}
-  var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
-  key = key ?? null;
-  value = value ?? null;
-  if (!key && !value) {
-    throw new ReferenceError("You did not supply a key or a value.");
-  } else if (key === key && !value) {
-    throw new ReferenceError("You did not supply a value to set it to. Key provided: " + key);
-  } else if (!key && value == value) {
-    throw new ReferenceError("Key is undefined. Was gave no key and received a value as " + value);
-  } else {
-    try {
-      data[`${key}`] = JSON.parse(value);
-    } catch (e) {
-      data[`${key}`] = value;
-    }
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
-  }
+ throw new ReferenceError("updateCache() is depreceated, use update() instead.")
 };
 
 /**
@@ -267,7 +194,7 @@ exports.updateCache = function(key, value) {
 
 exports.update = function(key, value) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if(key) {
@@ -292,7 +219,7 @@ exports.update = function(key, value) {
     } catch (e) {
       data[`${key}`] = value;
     }
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-files/cache.json", JSON.stringify(data));
   }
 }
 
@@ -314,19 +241,7 @@ exports.update = function(key, value) {
  * @since 1.0.0
 */
 exports.deleteFromCache = function(key) {
-  console.log("deleteFromCache() will be depreceated soon.")
-  key = key ?? "";
-  try {
-  key = key.trim();
-  } catch (err) {}
-  var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"))
-  if (!key || typeof data[`${key}`] == 'undefined') {
-    throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
-  } else {
-    delete data[`${key}`];
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
-  }
+  throw new ReferenceError("deleteFromCache() is depreceated, use delete() instead.");
 };
 
 /**
@@ -346,12 +261,38 @@ exports.delete = function(key) {
   key = key.trim();
   } catch (err){}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"))
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8"))
   if (!key || typeof data[`${key}`] == 'undefined') {
     throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
   } else {
     delete data[`${key}`];
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
+    fs.writeFileSync("./node_modules/arch881010-files/cache.json", JSON.stringify(data));
+  }
+};
+
+/**
+  * This module requires {@link module node:fs}.
+  * 
+  * This does not require the password.
+ * @param {string} key - They key your deleting.
+ * @example Example 
+ * const cache = require('arch881010-cache');
+ * cache.remove("key");
+ * @returns If its successful, it doesn't return anything. Otherwise, it returns a reference error.
+ * @since 1.0.5
+*/
+exports.remove = function(key) {
+  key = key ?? "";
+  try {
+  key = key.trim();
+  } catch (err){}
+  var fs = require('node:fs');
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8"))
+  if (!key || typeof data[`${key}`] == 'undefined') {
+    throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
+  } else {
+    delete data[`${key}`];
+    fs.writeFileSync("./node_modules/arch881010-files/cache.json", JSON.stringify(data));
   }
 };
 
@@ -372,18 +313,7 @@ exports.delete = function(key) {
  * @since 1.0.0
 */
 exports.getFromCache = function(key) {
-  console.log("getFromCache() will be depreceated soon.")
-  key = key ?? "";
-  try {
-  key = key.trim();
-  } catch (err) {}
-  var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
-  if (typeof data[key] == 'undefined') {
-    throw new ReferenceError(`There is no key as ${key} in the Cache.`);
-  } else {
-    return data[key];
-  }
+  throw new ReferenceError('getFromCache is deprecated. Use get(); instead.');
 };
 
 /**
@@ -406,7 +336,7 @@ exports.get = function(key) {
   key = key.trim();
   } catch (err) {}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8"));
   if (typeof data[`${key}`] == 'undefined') {
     throw new ReferenceError(`There is no key as ${key} in the Cache.`);
   } else {
@@ -418,7 +348,7 @@ exports.get = function(key) {
 /**
   * This module requires {@link module node:fs}.
   * 
-  * Allows the user to easily clear the cache. (Instead of navigating to "./node_modules/arch881010-cache/storageFiles/cache.json")
+  * Allows the user to easily clear the cache. (Instead of navigating to "./node_modules/arch881010-files/cache.json")
  * @param {string} [password=""] - Your password to clear the cache.
  * @example Example 1
  * const {clear} = require('arch881010-cache');
@@ -435,19 +365,20 @@ exports.clear = function(password) {
   password = password.trim();
   } catch(err){}
   var fs = require('node:fs');
-  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8")).password ?? "";
+  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8")).cache_lock_password_NOOVERWRITE ?? "";
   if (password != cachePassword) {
     console.log("Improper password.");
     return;
   };
-  fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "{}");
+  fs.writeFileSync("./node_modules/arch881010-files/cache.json", "{}");
+  console.log("Cache cleared.");
 }
 
 /**
  * @deprecated 1.0.5
   * @description This module requires {@link module node:fs}.
   * 
-  *  Allows the user to easily clear the cache. (Instead of navigating to "./node_modules/arch881010-cache/storageFiles/cache.json")
+  *  Allows the user to easily clear the cache. (Instead of navigating to "./node_modules/arch881010-files/cache.json")
  * @param {string} [password=""] - Your password to clear the cache.
  * @example Example 1
  * const {clearCache} = require('arch881010-cache');
@@ -459,18 +390,7 @@ exports.clear = function(password) {
  * @since 1.0.0
 */
 exports.clearCache = function(password) {
-  console.log("clearCache() will be depreceated soon.")
-  password = password ?? "";
-  try {
-  password = password.trim();
-  } catch(err){}
-  var fs = require('node:fs');
-  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8")).password ?? "";
-  if (password != cachePassword) {
-    console.log("Improper password.");
-    return;
-  };
-  fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "{}");
+  throw new Error("clearCache() is deprecated. Use clear() instead.");
 }
 
 /**
@@ -489,15 +409,7 @@ exports.clearCache = function(password) {
  * @since 1.0.3
  */
 exports.getFullCacheContent = function(how) {
-  console.log("getFullCacheContent() will be depreceated soon.")
-  how = how ?? "str";
-  how = how.trim();
-  var fs = require('node:fs');
-  if (how.toLowerCase() == "obj" || how.toLowerCase() == "object" || how.toLowerCase() == "o") {
-    return JSON.parse(fs.readFileSync('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8'));
-  } else {
-    return fs.readFileSync('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8');
-  }
+  throw new ReferenceError("getFullCacheContent() is depreceated, use content()");
 }
 
 /**
@@ -515,9 +427,9 @@ exports.content = function(how) {
   how = how.trim();
   var fs = require('node:fs');
   if (how.toLowerCase() == "obj" || how.toLowerCase() == "object" || how.toLowerCase() == "o") {
-    return JSON.parse(fs.readFileSync('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8'));
+    return JSON.parse(fs.readFileSync('./node_modules/arch881010-files/cache.json', 'utf-8'));
   } else {
-    return fs.readFileSync('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8');
+    return fs.readFileSync('./node_modules/arch881010-files/cache.json', 'utf-8');
   }
 }
 
@@ -534,7 +446,7 @@ exports.content = function(how) {
 
 exports.size = function() {
   var fs = require('node:fs');
-  var stats = fs.stat('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8');
+  var stats = fs.stat('./node_modules/arch881010-files/cache.json', 'utf-8');
   var bytes = stats.size;
   return bytes
 }
@@ -557,7 +469,7 @@ exports.deleteMatching = function(match) {
   match = match.toLowerCase();
   var cache;
   try {
-    var cache = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
+    var cache = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json","UTF-8"));
   } catch(err) {
     throw new ReferenceError("Missing cache??")
   }
@@ -570,6 +482,6 @@ exports.deleteMatching = function(match) {
       continue
     } else {}
   }
-  fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(cache));
-  console.log(`You deleted ${String(amount)} of keys.`)
+  fs.writeFileSync("./node_modules/arch881010-files/cache.json", JSON.stringify(cache));
+  console.log(`You deleted ${String(amount)} of keys.`);
 }

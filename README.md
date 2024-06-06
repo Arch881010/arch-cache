@@ -1,19 +1,31 @@
-# Hi
+# Hello
 
-1.0.4c:
-Fix err (cb)
+### Recent Patch Notes
+1.0.5:
+Fix err (cb)  
+Changes functions for better readability.  
+Made cache last between updates. (At the cost of using fs-extra)  
+**Updating WILL wipe all cache. But beyond this version (1.0.5), it will not. Any older versions (<1.0.5) will have their cache COMPLETELY WIPED.**
 
-Hey, when updating arch881010-cache, your cache gets **wiped.**
+### Info
+
+Hey, when updating arch881010-cache, your cache gets **wiped.**  
+**This has been fixed in 1.0.5 and greater!!!**
+Also, weirdly, my old publishes are gone!
 
 Type saftey.
-Keys, values, passwords, any string being entered, is automatically trimmed.
+Keys, values, passwords, any string being entered, is automatically trimmed of leading and trailing spaces.
 
 I do not have an full documentation and things yet, but let me explain some things.
 Notice: I keep a global variable as "cache" until I understand a few things, may test with JSON soon.
+**Recent updates has this as a file, and not a local variable.**
 
-If you require it as `const cache = require('arch881010-cache);`,  
-Password is a string and is optional.
-`cache.new(password);` - Creates the cache.  
+### Light Documentation, also avaliable [here](https://arch881010.github.io/arch-cache/).
+
+Assumes this is how you initialized it.  
+`const cache = require('arch881010-cache);`,  
+
+`cache.new(password);` - Creates the cache (password optional).  
 `cache.add(key, value);` - Adds a key with a certain value.  
 `cache.update(key, value);` - Updates the existing key with a new value.  
 `cache.delete(key);` - Deletes the key and it's value.  
@@ -24,7 +36,5 @@ Password is a string and is optional.
 `cache.size()` - Gets the cache's size in bytes.
 
 `
-Note: case is not sensitive, and forced to lower.
+Note: case is not sensitive, and is forced to lower.
 `
-
-W.I.P.

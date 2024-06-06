@@ -1,7 +1,7 @@
 {
   "name": "arch881010-cache",
-  "version": "1.0.4c",
-  "description": "Arch's cache that uses node:fs.",
+  "version": "1.0.5",
+  "description": "Arch's cache that uses node:fs and fs-extra to cache files and directories",
   "main": "index.js",
   "scripts": {
     "main": "echo \"No main file to run\" && exit 1",
@@ -20,10 +20,13 @@
   "files": [
     "index.js",
     "LICENSE",
-    "README.md",
-    "stroageFiles/cache.json"
+    "README.md"
   ],
   "devDependencies": {
     "jsdoc": "^4.0.2"
+  },
+  "dependencies": {
+    "arch881010-files": "^0.0.1",
+    "fs-extra": "^11.2.0"
   }
 }

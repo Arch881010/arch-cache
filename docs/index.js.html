@@ -93,9 +93,9 @@ exports.new = function(password) {
   var fs = require('node:fs');
   var cache;
   try {
-    cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8");
+    cache = fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8");
   } catch(err) {
-    fs.writeFile("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse("{}"))
+    fs.writeFile("./node_modules/cache/arch_cache.json", JSON.parse("{}"))
     cache = "{}"
   }
   password = password ?? "";
@@ -103,7 +103,7 @@ exports.new = function(password) {
     "password": password
   }
   if (cache == '{}' || cache == "") {
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(obj));
+    fs.writeFileSync("./node_modules/cache/arch_cache.json", JSON.stringify(obj));
   } else {
   }
 }
@@ -131,9 +131,9 @@ exports.newCache = function(password) {
   var fs = require('node:fs');
   var cache;
   try {
-    cache = fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8");
+    cache = fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8");
   } catch(err) {
-    fs.writeFile("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse("{}"))
+    fs.writeFile("./node_modules/cache/arch_cache.json", JSON.parse("{}"))
     cache = "{}"
   }
   password = password ?? "";
@@ -141,7 +141,7 @@ exports.newCache = function(password) {
     "password": password
   }
   if (cache == '{}' || cache == "") {
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(obj));
+    fs.writeFileSync("./node_modules/cache/arch_cache.json", JSON.stringify(obj));
   } else {
   }
 }
@@ -163,7 +163,7 @@ exports.newCache = function(password) {
 exports.addCache = function(key, value) {
   console.log("addCache() will be depreceated soon.")
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if(key) {
@@ -188,7 +188,7 @@ exports.addCache = function(key, value) {
     } catch (e) {
       data[`${key}`] = value;
     }
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.parse(data));
+    fs.writeFileSync("./node_modules/cache/arch_cache.json", JSON.parse(data));
   }
 };
 
@@ -215,7 +215,7 @@ exports.add = function(key, value) {
   value = value.trim();
   } catch (err) {}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if (!key &amp;&amp; !value) {
@@ -230,7 +230,7 @@ exports.add = function(key, value) {
     } catch (e) {
       data[`${key}`] = value;
     }
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
+    fs.writeFileSync("./node_modules/cache/arch_cache.json", JSON.stringify(data));
   }
 };
 
@@ -260,7 +260,7 @@ exports.updateCache = function(key, value) {
   value = value.trim();
   } catch (err) {}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if (!key &amp;&amp; !value) {
@@ -275,7 +275,7 @@ exports.updateCache = function(key, value) {
     } catch (e) {
       data[`${key}`] = value;
     }
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
+    fs.writeFileSync("./node_modules/cache/arch_cache.json", JSON.stringify(data));
   }
 };
 
@@ -295,7 +295,7 @@ exports.updateCache = function(key, value) {
 
 exports.update = function(key, value) {
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8"));
   key = key ?? null;
   value = value ?? null;
   if(key) {
@@ -320,7 +320,7 @@ exports.update = function(key, value) {
     } catch (e) {
       data[`${key}`] = value;
     }
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
+    fs.writeFileSync("./node_modules/cache/arch_cache.json", JSON.stringify(data));
   }
 }
 
@@ -348,12 +348,12 @@ exports.deleteFromCache = function(key) {
   key = key.trim();
   } catch (err) {}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"))
+  var data = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8"))
   if (!key || typeof data[`${key}`] == 'undefined') {
     throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
   } else {
     delete data[`${key}`];
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
+    fs.writeFileSync("./node_modules/cache/arch_cache.json", JSON.stringify(data));
   }
 };
 
@@ -374,12 +374,12 @@ exports.delete = function(key) {
   key = key.trim();
   } catch (err){}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"))
+  var data = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8"))
   if (!key || typeof data[`${key}`] == 'undefined') {
     throw new ReferenceError("There is no key as \"" + key + "\" in the cache.");
   } else {
     delete data[`${key}`];
-    fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", JSON.stringify(data));
+    fs.writeFileSync("./node_modules/cache/arch_cache.json", JSON.stringify(data));
   }
 };
 
@@ -406,7 +406,7 @@ exports.getFromCache = function(key) {
   key = key.trim();
   } catch (err) {}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8"));
   if (typeof data[key] == 'undefined') {
     throw new ReferenceError(`There is no key as ${key} in the Cache.`);
   } else {
@@ -434,7 +434,7 @@ exports.get = function(key) {
   key = key.trim();
   } catch (err) {}
   var fs = require('node:fs');
-  var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8"));
+  var data = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8"));
   if (typeof data[`${key}`] == 'undefined') {
     throw new ReferenceError(`There is no key as ${key} in the Cache.`);
   } else {
@@ -446,7 +446,7 @@ exports.get = function(key) {
 /**
   * This module requires {@link module node:fs}.
   * 
-  * Allows the user to easily clear the cache. (Instead of navigating to "./node_modules/arch881010-cache/storageFiles/cache.json")
+  * Allows the user to easily clear the cache. (Instead of navigating to "./node_modules/cache/arch_cache.json")
  * @param {string} [password=""] - Your password to clear the cache.
  * @example Example 1
  * const {clear} = require('arch881010-cache');
@@ -463,19 +463,19 @@ exports.clear = function(password) {
   password = password.trim();
   } catch(err){}
   var fs = require('node:fs');
-  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8")).password ?? "";
+  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8")).password ?? "";
   if (password != cachePassword) {
     console.log("Improper password.");
     return;
   };
-  fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "{}");
+  fs.writeFileSync("./node_modules/cache/arch_cache.json", "{}");
 }
 
 /**
  * @deprecated 1.0.5
   * @description This module requires {@link module node:fs}.
   * 
-  *  Allows the user to easily clear the cache. (Instead of navigating to "./node_modules/arch881010-cache/storageFiles/cache.json")
+  *  Allows the user to easily clear the cache. (Instead of navigating to "./node_modules/cache/arch_cache.json")
  * @param {string} [password=""] - Your password to clear the cache.
  * @example Example 1
  * const {clearCache} = require('arch881010-cache');
@@ -493,12 +493,12 @@ exports.clearCache = function(password) {
   password = password.trim();
   } catch(err){}
   var fs = require('node:fs');
-  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "UTF-8")).password ?? "";
+  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json", "UTF-8")).password ?? "";
   if (password != cachePassword) {
     console.log("Improper password.");
     return;
   };
-  fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json", "{}");
+  fs.writeFileSync("./node_modules/cache/arch_cache.json", "{}");
 }
 
 /**
@@ -522,9 +522,9 @@ exports.getFullCacheContent = function(how) {
   how = how.trim();
   var fs = require('node:fs');
   if (how.toLowerCase() == "obj" || how.toLowerCase() == "object" || how.toLowerCase() == "o") {
-    return JSON.parse(fs.readFileSync('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8'));
+    return JSON.parse(fs.readFileSync('./node_modules/cache/arch_cache.json', 'utf-8'));
   } else {
-    return fs.readFileSync('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8');
+    return fs.readFileSync('./node_modules/cache/arch_cache.json', 'utf-8');
   }
 }
 
@@ -543,9 +543,9 @@ exports.content = function(how) {
   how = how.trim();
   var fs = require('node:fs');
   if (how.toLowerCase() == "obj" || how.toLowerCase() == "object" || how.toLowerCase() == "o") {
-    return JSON.parse(fs.readFileSync('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8'));
+    return JSON.parse(fs.readFileSync('./node_modules/cache/arch_cache.json', 'utf-8'));
   } else {
-    return fs.readFileSync('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8');
+    return fs.readFileSync('./node_modules/cache/arch_cache.json', 'utf-8');
   }
 }
 
@@ -562,7 +562,7 @@ exports.content = function(how) {
 
 exports.size = function() {
   var fs = require('node:fs');
-  var stats = fs.stat('./node_modules/arch881010-cache/storageFiles/cache.json', 'utf-8');
+  var stats = fs.stat('./node_modules/cache/arch_cache.json', 'utf-8');
   var bytes = stats.size;
   return bytes
 }
@@ -585,7 +585,7 @@ exports.deleteMatching = function(match) {
   match = match.toLowerCase();
   var cache;
   try {
-    var cache = JSON.parse(fs.readFileSync("./node_modules/arch881010-cache/storageFiles/cache.json","UTF-8"));
+    var cache = JSON.parse(fs.readFileSync("./node_modules/cache/arch_cache.json","UTF-8"));
   } catch(err) {
     throw new ReferenceError("Missing cache??")
   }
@@ -598,7 +598,7 @@ exports.deleteMatching = function(match) {
       continue
     } else {}
   }
-  fs.writeFileSync("./node_modules/arch881010-cache/storageFiles/cache.json",JSON.stringify(cache));
+  fs.writeFileSync("./node_modules/cache/arch_cache.json",JSON.stringify(cache));
   console.log(`You deleted ${String(amount)} of keys.`)
 }</code></pre>
         </article>
