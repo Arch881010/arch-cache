@@ -1,10 +1,11 @@
 # Hello
 
 ### Recent Patch Notes
-1.0.5:
+1.0.5b:
 Fix err (cb)  
 Changes functions for better readability.  
 Made cache last between updates. (At the cost of using fs-extra)  
+Fixed certain functions so they don't throw errors as much, but logs warnings.
 **Updating WILL wipe all cache. But beyond this version (1.0.5), it will not. Any older versions (<1.0.5) will have their cache COMPLETELY WIPED.**
 
 ### Info

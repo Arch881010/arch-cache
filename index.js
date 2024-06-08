@@ -67,7 +67,7 @@ exports.new = function(password) {
   try {
     cache = fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8");
   } catch(err) {
-    cache = "{}"
+    cache = "{}";
   }
   password = password ?? "";
   obj = {
@@ -342,7 +342,8 @@ exports.get = function(key) {
   var fs = require('node:fs');
   var data = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8"));
   if (typeof data[`${key}`] == 'undefined') {
-    throw new ReferenceError(`There is no key as ${key} in the Cache.`);
+    console.log(`[!] There is no key as ${key} in the Cache.`);
+    return null;
   } else {
     return data[`${key}`];
   }
@@ -369,7 +370,12 @@ exports.clear = function(password) {
   password = password.trim();
   } catch(err){}
   var fs = require('node:fs');
-  var cachePassword = JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8")).cache_lock_password_NOOVERWRITE ?? "";
+  var cachePassword;
+  try {
+  JSON.parse(fs.readFileSync("./node_modules/arch881010-files/cache.json", "UTF-8")).cache_lock_password_NOOVERWRITE ?? "";
+  } catch(err) { 
+    return console.log("[!] Missing file, create a new cache with new() first."); 
+  }
   if (password != cachePassword) {
     console.log("Improper password.");
     return;

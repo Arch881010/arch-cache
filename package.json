@@ -1,7 +1,7 @@
 {
   "name": "arch881010-cache",
-  "version": "1.0.5a",
-  "description": "Arch's cache that uses node:fs and fs-extra to cache files and directories",
+  "version": "1.0.5b",
+  "description": "Arch's cache that uses node:fs and fs-extra to cache data.",
   "main": "index.js",
   "scripts": {
     "main": "echo \"No main file to run\" && exit 1",
